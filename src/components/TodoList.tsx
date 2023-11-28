@@ -1,27 +1,24 @@
-import { FC } from 'react';
+import { FC, useEffect } from 'react';
 
 import TodoItem from './TodoItem';
-import { ITodoItemProps } from './TodoItem';
+import { useAppDispatch, useAppSelector } from '../store/hooks';
+import { getAllTodos } from '../store/todos/todosThunks';
 
-const todos: ITodoItemProps[] = [
-    {
-        id: '1',
-        title: 'first todo',
-        isCompleted: false,
-    },
-    {
-        id: '2',
-        title: 'second todo',
-        isCompleted: false,
-    },
-];
+const TodoList: FC = () => {
+    const todos = useAppSelector((state) => state.todos.list);
+    const dispatch = useAppDispatch();
 
-const TodoList: FC = () => (
-    <ul className='flex flex-col gap-2 w-[600px] bg-sky-100 p-6 rounded-md'>
-        {todos.map((todo) => (
-            <TodoItem key={todo.id} title={todo.title} isCompleted={todo.isCompleted} />
-        ))}
-    </ul>
-);
+    useEffect(() => {
+        dispatch(getAllTodos());
+    }, [dispatch]);
+
+    return (
+        <ul className='flex flex-col gap-2 max-w-[600px] bg-slate-100 p-6 rounded-md'>
+            {todos.map((todo) => (
+                <TodoItem key={todo.id} title={todo.title} completed={todo.completed} />
+            ))}
+        </ul>
+    );
+};
 
 export default TodoList;
