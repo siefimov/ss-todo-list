@@ -26,7 +26,7 @@ const todoSlice = createSlice({
             state.error = null;
         });
         builder.addCase(addTodo.fulfilled, (state, action) => {
-            state.list.push(action.payload);
+            state.list.unshift(action.payload);
         });
 
         builder.addCase(updateTodo.pending, (state) => {
