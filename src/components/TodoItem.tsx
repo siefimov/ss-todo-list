@@ -4,7 +4,7 @@ import { useAppDispatch } from '../store/hooks';
 import { deleteTodo, updateTodo } from '../store/todos/todosThunks';
 
 export interface ITodoItemProps {
-    id: number | string;
+    id: number | string | undefined;
     title: string;
     completed?: boolean;
 }
@@ -20,7 +20,6 @@ const TodoItem: FC<ITodoItemProps> = ({ id, title, completed }) => {
 
     const handleClickCheckbox = () => {
         setIsCompleted(!isCompleted);
-        console.log(completed);
         dispatch(updateTodo({ id: id, todo: { title: title, completed: isCompleted } }));
     };
 

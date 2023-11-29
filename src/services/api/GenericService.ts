@@ -21,11 +21,11 @@ class GenericService<T> {
         return await http.post(`/${this.endpoint}`, data);
     }
 
-    async update(id: number | string, data: T): Promise<T> {
+    async update(id: number | string | undefined, data: T): Promise<T> {
         return await http.put(`/${this.endpoint}/${id}`, data);
     }
 
-    async delete(id: number | string): Promise<void> {
+    async delete(id: number | string | undefined): Promise<void> {
         await http.delete(`/${this.endpoint}/${id}`);
     }
 }
