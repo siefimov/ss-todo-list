@@ -7,14 +7,14 @@ export interface IUsePagintion {
     currentPage: number;
 }
 
-export const DOTS = '...';
+export const DOTS: string = '...';
 
 const range = (start: number, end: number) => {
     const length = end - start + 1;
     return Array.from({ length }, (_, idx) => idx + start);
 };
 
-export const usePagination: FC<IUsePagintion> = ({ totalCount, pageSize, siblingCount = 1, currentPage }) => {
+export const usePagination: FC<IUsePagintion> = ({ totalCount, pageSize, siblingCount = 1, currentPage }): (string | number | typeof DOTS)[] | undefined => {
     const paginationRange = useMemo(() => {
         const totalPageCount = Math.ceil(totalCount / pageSize);
 

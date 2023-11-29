@@ -4,7 +4,7 @@ import { useAppDispatch } from '../store/hooks';
 import { deleteTodo, updateTodo } from '../store/todos/todosThunks';
 
 export interface ITodoItemProps {
-    id: number | string;
+    id: number | string | undefined;
     title: string;
     completed?: boolean;
 }
