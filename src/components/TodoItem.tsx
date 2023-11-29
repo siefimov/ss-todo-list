@@ -20,7 +20,6 @@ const TodoItem: FC<ITodoItemProps> = ({ id, title, completed }) => {
 
     const handleClickCheckbox = () => {
         setIsCompleted(!isCompleted);
-        console.log(completed);
         dispatch(updateTodo({ id: id, todo: { title: title, completed: isCompleted } }));
     };
 

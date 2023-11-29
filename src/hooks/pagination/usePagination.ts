@@ -73,7 +73,5 @@ export const usePagination: FC<IUsePagintion> = ({ totalCount, pageSize, sibling
         }
     }, [totalCount, pageSize, siblingCount, currentPage]);
 
-    console.log(paginationRange);
-
     return paginationRange;
 };

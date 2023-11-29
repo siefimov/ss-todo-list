@@ -9,7 +9,7 @@ interface IPaginationComponent extends IUsePagintion {
 }
 
 type PaginationRangeItem = number | typeof DOTS;
-type PaginationRange = PaginationRangeItem[]
+type PaginationRange = PaginationRangeItem[];
 
 const Pagination: FC<IPaginationComponent> = (props) => {
     const { onPageChange, totalCount, siblingCount = 1, currentPage, pageSize, className } = props;
@@ -21,8 +21,6 @@ const Pagination: FC<IPaginationComponent> = (props) => {
             siblingCount,
             pageSize,
         }) || [];
-
-    console.log(paginationRange);
 
     if (currentPage === 0 || paginationRange?.length < 2) {
         return null;
