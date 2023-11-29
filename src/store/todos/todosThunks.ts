@@ -16,28 +16,27 @@ const addTodo = createAsyncThunk(ActionTypes.ADD_TODO, async (params: string) =>
         completed: false,
     };
     try {
-        const data = await todosService.create(todo);
-        return data;
+        const response = await todosService.create(todo);
+        return response.data;
     } catch (error) {
         throw new Error('Failed to create todo');
     }
 });
 
-const updateTodo = createAsyncThunk(ActionTypes.UPDATE_TODO, async (params: { id: number; todo: ITodo }) => {
+const updateTodo = createAsyncThunk(ActionTypes.UPDATE_TODO, async (params: { id: number | string; todo: ITodo }) => {
     try {
         const { id, todo } = params;
-        const data = await todosService.update(id, todo);
-        console.log(data);
-        return data;
+        const response = await todosService.update(id, todo);
+        return response.data;
     } catch (error) {
         throw new Error('Failed to update todos');
     }
 });
 
-const deleteTodo = createAsyncThunk(ActionTypes.DELETE_TODO, async (params: number) => {
+const deleteTodo = createAsyncThunk(ActionTypes.DELETE_TODO, async (params: number | string) => {
     try {
         const data = await todosService.delete(params);
-        return data;
+        return params;
     } catch (error) {
         throw new Error('Failed to delete todo');
     }
