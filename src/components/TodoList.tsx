@@ -19,7 +19,7 @@ const TodoList: FC<ITodoListProps> = ({ search, selected }) => {
     const selectedTodos = searchedTodos.filter(todo => {
         if(selected === 'completed') {
             return todo.completed === true;
-        } else if (selected === 'incompleted') {
+        } else if (selected === 'incomplete') {
             return todo.completed === false;
         } else {
             return todo
