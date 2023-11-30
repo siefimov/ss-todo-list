@@ -9,20 +9,30 @@ const PageSize = 10;
 
 interface ITodoListProps {
     search: string;
+    selected: string;
 }
 
-const TodoList: FC<ITodoListProps> = ({ search }) => {
+const TodoList: FC<ITodoListProps> = ({ search, selected }) => {
     const todos = useAppSelector((state) => state.todos.list);
 
     const searchedTodos = todos.filter((todo) => todo.title.includes(search));
+    const selectedTodos = searchedTodos.filter(todo => {
+        if(selected === 'completed') {
+            return todo.completed === true;
+        } else if (selected === 'incompleted') {
+            return todo.completed === false;
+        } else {
+            return todo
+        }
+    })
 
     const [currentPage, setCurrentPage] = useState<number | any>(1);
 
     const currentTableData = useMemo(() => {
         const firstPageIndex = (currentPage - 1) * PageSize;
         const lastPageIndex = firstPageIndex + PageSize;
-        return searchedTodos.slice(firstPageIndex, lastPageIndex);
-    }, [currentPage, searchedTodos]);
+        return selectedTodos.slice(firstPageIndex, lastPageIndex);
+    }, [currentPage, selectedTodos]);
 
     console.log(currentTableData);
 
@@ -37,7 +47,7 @@ const TodoList: FC<ITodoListProps> = ({ search }) => {
                 <Pagination
                     className='pagination-bar'
                     currentPage={currentPage}
-                    totalCount={searchedTodos.length}
+                    totalCount={selectedTodos.length}
                     pageSize={PageSize}
                     onPageChange={(page) => setCurrentPage(page)}
                 />

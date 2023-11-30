@@ -14,8 +14,8 @@ export const SelectButton: FC<ISelectButtonProps> = ({ value, onChange }) => (
         <option value='all' className='appearance-none '>
             All
         </option>
-        <option value='incompleted' className='py-5'>
-            Incompleted
+        <option value='incomplete' className='py-5'>
+            Incomplete
         </option>
         <option value='completed'>Completed</option>
     </select>
