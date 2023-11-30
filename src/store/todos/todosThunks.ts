@@ -41,7 +41,8 @@ const addTodo = createAsyncThunk(ActionTypes.ADD_TODO, async (params: string) =>
 
 const updateTodo = createAsyncThunk(
     ActionTypes.UPDATE_TODO,
-    async (params: { id: number | string | undefined; todo: ITodo }) => {
+    async (params: { id: number | string; todo: ITodo }) => {
+        console.log(params.id);
         try {
             const { id, todo } = params;
             const response = (await todosService.update(id, todo)) as Response;
