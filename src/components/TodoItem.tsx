@@ -4,7 +4,7 @@ import { useAppDispatch } from '../store/hooks';
 import { deleteTodo, updateTodo } from '../store/todos/todosThunks';
 
 export interface ITodoItemProps {
-    id: number | string | undefined;
+    id: number | string;
     title: string;
     completed?: boolean;
 }
@@ -48,7 +48,7 @@ const TodoItem: FC<ITodoItemProps> = ({ id, title, completed }) => {
     }, [isEditing]);
 
     return (
-        <li className='flex justify-between items-center w-full min-h-[44px] odd:border-b-[1px] even:border-b-[1px] last:border-b-0 px-3 py-2 text-slate-700 bg-white'>
+        <li className='flex justify-between items-center w-full min-h-[44px] odd:border-b-[1px] even:border-b-[1px] last:border-b-0 px-3 py-2 text-slate-600 bg-white'>
             <div className='flex items-center w-3/4'>
                 {isEditing ? (
                     <>

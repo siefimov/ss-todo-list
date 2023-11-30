@@ -27,11 +27,11 @@ export const TodoModal: FC = () => {
     return (
         <>
             <button
-                className='bg-sky-700 hover:bg-sky-600 font-bold px-5 py-3 rounded-xl text-sky-50 hover:shadow-lg outline-none focus:outline-none mr-1 mb-1'
+                className='bg-sky-700 hover:bg-sky-600 text-3xl font-bold w-10 h-10 rounded-md text-sky-50 hover:shadow-lg outline-none focus:outline-none'
                 type='button'
                 onClick={() => setShowModal(true)}
             >
-                Add Todo
+                +
             </button>
             {showModal ? (
                 <>
@@ -76,11 +76,11 @@ export const TodoModal: FC = () => {
                                         Close
                                     </button>
                                     <button
-                                        className='text-white bg-sky-700 hover:bg-sky-600 font-bold uppercase text-sm px-6 py-3 rounded-xl shadow hover:shadow-lg  outline-none focus:outline-none mr-1 mb-1'
+                                        className='text-white bg-sky-700 hover:bg-sky-600 font-bold uppercase text-xl w-10 h-10 rounded-md shadow hover:shadow-lg  outline-none focus:outline-none'
                                         type='button'
                                         onClick={handleAddClick}
                                     >
-                                        Add
+                                        +
                                     </button>
                                 </div>
                             </div>
