@@ -99,7 +99,7 @@ const TodoItem: FC<ITodoItemProps> = ({ id, title, completed }) => {
                 ) : (
                     <div
                         onClick={handleEditClick}
-                        className='p-1 border border-sky-400 mr-2 rounded hover:cursor-pointer hover:bg-sky-200 text-[#585858] text-base'
+                        className='p-1 border border-sky-400 mr-2 rounded hover:cursor-pointer hover:bg-sky-200 text-sl text-base'
                     >
                         <MdEdit />
                     </div>
@@ -107,7 +107,7 @@ const TodoItem: FC<ITodoItemProps> = ({ id, title, completed }) => {
                 {isEditing ? null : (
                     <div
                         onClick={handleDeleteClick}
-                        className='p-1 border border-red-400 rounded hover:cursor-pointer hover:bg-red-200 text-slate-600'
+                        className='p-1 border border-red-400 rounded hover:cursor-pointer hover:bg-red-200 text-slate-500'
                     >
                         <MdDelete />
                     </div>
