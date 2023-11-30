@@ -1,16 +1,16 @@
 import { FC, useMemo, useState } from 'react';
+import { useAppSelector } from '../store/hooks';
 
 import TodoItem from './TodoItem';
-import { useAppSelector } from '../store/hooks';
 
 import Pagination from './Pagination';
 
-const PageSize = 8;
+const PageSize = 10;
 
 const TodoList: FC = () => {
     const todos = useAppSelector((state) => state.todos.list);
 
-    const [currentPage, setCurrentPage] = useState(1);
+    const [currentPage, setCurrentPage] = useState<number | any>(1);
 
     const currentTableData = useMemo(() => {
         const firstPageIndex = (currentPage - 1) * PageSize;
@@ -18,9 +18,11 @@ const TodoList: FC = () => {
         return todos.slice(firstPageIndex, lastPageIndex);
     }, [currentPage, todos]);
 
+    console.log(currentTableData);
+
     return (
         <div>
-            <ul className='flex flex-col gap-3 max-w-[700px] p-6 m-4 border border-sky-300 rounded bg-slate-100'>
+            <ul className='flex flex-col max-w-[600px] pb-6 m-4box-border'>
                 {currentTableData.map((todo) => (
                     <TodoItem key={todo.id} title={todo.title} completed={todo.completed} id={todo.id} />
                 ))}

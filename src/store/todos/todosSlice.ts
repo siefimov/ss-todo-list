@@ -43,6 +43,7 @@ const todoSlice = createSlice({
         });
 
         builder.addCase(deleteTodo.fulfilled, (state, action) => {
+            console.log(action.payload);
             state.list = state.list.filter((todo) => todo.id !== action.payload);
         });
     },

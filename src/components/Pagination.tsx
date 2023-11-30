@@ -4,11 +4,11 @@ import { usePagination, DOTS, IUsePagintion } from '../hooks/pagination/usePagin
 import './pagination.scss';
 
 interface IPaginationComponent extends IUsePagintion {
-    onPageChange: (page: number) => void;
+    onPageChange: (page: number | string) => void;
     className: string;
 }
 
-type PaginationRangeItem = number | typeof DOTS;
+type PaginationRangeItem = number | string;
 type PaginationRange = PaginationRangeItem[];
 
 const Pagination: FC<IPaginationComponent> = (props) => {
@@ -48,7 +48,11 @@ const Pagination: FC<IPaginationComponent> = (props) => {
             </li>
             {paginationRange.map((pageNumber) => {
                 if (pageNumber === DOTS) {
-                    return <li className='pagination-item dots'>&#8230;</li>;
+                    return (
+                        <li key={crypto.randomUUID()} className='pagination-item dots'>
+                            &#8230;
+                        </li>
+                    );
                 }
 
                 return (
