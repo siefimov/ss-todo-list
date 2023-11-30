@@ -16,6 +16,7 @@ const TodoList: FC<ITodoListProps> = ({ search, selected }) => {
     const todos = useAppSelector((state) => state.todos.list);
 
     const searchedTodos = todos.filter((todo) => todo.title.includes(search));
+    
     const selectedTodos = searchedTodos.filter(todo => {
         if(selected === 'completed') {
             return todo.completed === true;
@@ -26,7 +27,7 @@ const TodoList: FC<ITodoListProps> = ({ search, selected }) => {
         }
     })
 
-    const [currentPage, setCurrentPage] = useState<number | any>(1);
+    const [currentPage, setCurrentPage] = useState(1);
 
     const currentTableData = useMemo(() => {
         const firstPageIndex = (currentPage - 1) * PageSize;
