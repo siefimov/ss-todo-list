@@ -37,6 +37,10 @@ const TodoItem: FC<ITodoItemProps> = ({ id, title, completed }) => {
         setNewTitle(title);
     };
 
+    const handleDeleteClick = () => {
+        dispatch(deleteTodo(id));
+    };
+
     useEffect(() => {
         if (isEditing) {
             inputRef.current?.focus();
@@ -44,11 +48,11 @@ const TodoItem: FC<ITodoItemProps> = ({ id, title, completed }) => {
     }, [isEditing]);
 
     return (
-        <li className='flex justify-between items-center min-h-[44px] border rounded p-2 bg-white'>
-            <div className='flex items-center'>
+        <li className='flex justify-between items-center w-full min-h-[44px] odd:border-b-[1px] even:border-b-[1px] last:border-b-0 px-3 py-2 text-slate-700 bg-white'>
+            <div className='flex items-center w-3/4'>
                 {isEditing ? (
                     <>
-                        <input type='checkbox' checked={isCompleted} />
+                        <input type='checkbox' checked={isCompleted} className='h-5 w-5 mr-4' />
                         <input
                             type='text'
                             value={newTitle}
@@ -59,13 +63,20 @@ const TodoItem: FC<ITodoItemProps> = ({ id, title, completed }) => {
                                 }
                             }}
                             ref={inputRef}
-                            className='mx-4 outline-none text-sky-800'
+                            className='block w-full outline-none text-sky-700 bg-slate-100'
                         />
                     </>
                 ) : (
                     <>
-                        <input type='checkbox' checked={isCompleted} onChange={() => handleClickCheckbox()} />
-                        <span className={`mx-4 ${isCompleted ? 'text-slate-400 line-through' : ''}`}>{title}</span>
+                        <input
+                            type='checkbox'
+                            checked={isCompleted}
+                            onChange={() => handleClickCheckbox()}
+                            className='h-5 w-5 mr-4'
+                        />
+                        <span className={`block w-full truncate ${isCompleted ? 'text-slate-400 line-through' : ''}`}>
+                            {title}
+                        </span>
                     </>
                 )}
             </div>
@@ -95,7 +106,7 @@ const TodoItem: FC<ITodoItemProps> = ({ id, title, completed }) => {
                 )}
                 {isEditing ? null : (
                     <div
-                        onClick={() => dispatch(deleteTodo(id))}
+                        onClick={handleDeleteClick}
                         className='p-1 border border-red-400 rounded hover:cursor-pointer hover:bg-red-200 text-slate-600'
                     >
                         <MdDelete />
