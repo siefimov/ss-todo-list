@@ -2,6 +2,7 @@ import { FC, useEffect, useRef, useState } from 'react';
 import { MdDelete, MdEdit } from 'react-icons/md';
 import { useAppDispatch } from '../store/hooks';
 import { deleteTodo, updateTodo } from '../store/todos/todosThunks';
+import toast from 'react-hot-toast';
 
 export interface ITodoItemProps {
     id: number | string;
@@ -20,7 +21,7 @@ const TodoItem: FC<ITodoItemProps> = ({ id, title, completed }) => {
 
     const handleClickCheckbox = () => {
         setIsCompleted(!isCompleted);
-        dispatch(updateTodo({ id: id, todo: { title: title, completed: isCompleted } }));
+        dispatch(updateTodo({ todo: { id: id, title: title, completed: isCompleted } }));
     };
 
     const handleEditClick = () => {
@@ -28,17 +29,23 @@ const TodoItem: FC<ITodoItemProps> = ({ id, title, completed }) => {
     };
 
     const handleSaveClick = () => {
-        dispatch(updateTodo({ id: id, todo: { title: newTitle } }));
+        if(title === newTitle) {
+            return toast.error('No changes made')
+        }
+        dispatch(updateTodo({ todo: { id: id, title: newTitle } }));
         setIsEditing(false);
+        toast.success('Task updated successful');
     };
 
     const handleCancelClick = () => {
         setIsEditing(false);
         setNewTitle(title);
+        
     };
 
     const handleDeleteClick = () => {
         dispatch(deleteTodo(id));
+        toast.success('Task deleted successful');
     };
 
     useEffect(() => {

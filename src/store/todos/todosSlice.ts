@@ -34,11 +34,14 @@ const todoSlice = createSlice({
             state.error = null;
         });
         builder.addCase(updateTodo.fulfilled, (state, action) => {
-            const { id, title } = action.payload;
+            const { id, title, completed } = action.payload;
+            
             const todoToUpdate = state.list.find((todo) => todo.id === id);
             if (todoToUpdate) {
                 todoToUpdate.title = title;
+                todoToUpdate.completed = completed;
             }
+            
             state.loading = false;
         });
 
