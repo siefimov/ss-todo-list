@@ -1,6 +1,7 @@
 import { FC, useEffect, useRef, useState } from 'react';
 import { useAppDispatch } from '../store/hooks';
 import { addTodo } from '../store/todos/todosThunks';
+import toast from 'react-hot-toast';
 
 export const TodoModal: FC = () => {
     const [newTodo, setNewTodo] = useState('');
@@ -14,8 +15,11 @@ export const TodoModal: FC = () => {
             dispatch(addTodo(newTodo));
             setNewTodo('');
             setShowModal(false);
+            toast.success('Task added successful');
         }
-        setShowModal(false);
+        if (newTodo === '') {
+            toast.error('Task cannot be empty');
+        }
     };
 
     useEffect(() => {
