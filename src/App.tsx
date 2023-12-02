@@ -5,6 +5,7 @@ import { getAllTodos } from './store/todos/todosThunks';
 import { TodoModal } from './components/TodoModal';
 import { SearchInput } from './components/SearchInput';
 import { SelectButton } from './components/SelectButton';
+import { Toaster } from 'react-hot-toast';
 
 const App = () => {
     const [searchValue, setSearchValue] = useState('');
@@ -39,6 +40,14 @@ const App = () => {
                 </div>
                 <TodoList search={searchValue} selected={selected} />
             </div>
+            <Toaster
+                position='top-right'
+                toastOptions={{
+                    style: {
+                        fontSize: '1rem',
+                    },
+                }}
+            />
         </div>
     );
 };
