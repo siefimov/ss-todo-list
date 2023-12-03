@@ -14,7 +14,6 @@ interface Response extends ITodo {
 
 const getAllTodos = createAsyncThunk(ActionTypes.TODOS, async () => {
     const response = await todosService.getAll();
-
     return response;
 });
 
@@ -28,7 +27,7 @@ const addTodo = createAsyncThunk(ActionTypes.ADD_TODO, async (params: string) =>
         const response = (await todosService.create(todo)) as Response;
         const { title, userId, completed } = response.data;
         const userData = {
-            id: Math.ceil(Math.random() * 1000),
+            id: Math.ceil(Math.random() * 100),
             title,
             userId,
             completed,
