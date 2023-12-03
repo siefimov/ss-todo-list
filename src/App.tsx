@@ -18,7 +18,6 @@ const App = () => {
     const [selected, setSelected] = useState('All');
 
     const handleSelectChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
-        console.log(e.target.value);
         setSelected(e.target.value);
     };
 
@@ -27,27 +26,31 @@ const App = () => {
     }, [dispatch]);
 
     return (
-        <div className='min-h-[100vh] w-[100vw] pt-8  flex flex-col items-center box-border bg-slate-50'>
-            <h1 className='mb-6 text-4xl text-sky-800 font-bold'>TODO List</h1>
+        <div className='min-h-[100vh] w-[100vw] pt-8  flex flex-col items-center box-border bg-gray-50'>
+            <div className='flex flex-col border border-slate-400 rounded mx-5'>
+                <h1 className='p-6 text-4xl text-sky-800 font-bold bg-sky-100 rounded'>TODO List</h1>
 
-            <div className='px-6 pb-5 max-w-[600px] sm:w-[600px] w-full rounded border bg-white'>
-                <div className='flex justify-between items-center w-full py-6 pt-8'>
-                    <div className='flex flex-wrap justify-between w-full pb-8 border-b-[1px] items-center'>
-                        <SearchInput value={searchValue} onChange={handleSearchChange} />
-                        <SelectButton value={selected} onChange={handleSelectChange} />
-                        <TodoModal />
+                <div className='pb-5 max-w-[600px] w-full rounded bg-white'>
+                    <div className='flex px-6 justify-between items-center pt-4 bg-sky-100'>
+                        <div className='flex gap-5 flex-col sm:flex-row items-end w-full pb-8'>
+                            <SearchInput value={searchValue} onChange={handleSearchChange} />
+                            <div className='flex items-center gap-5'>
+                                <SelectButton value={selected} onChange={handleSelectChange} />
+                                <TodoModal />
+                            </div>
+                        </div>
                     </div>
+                    <TodoList search={searchValue} selected={selected} />
                 </div>
-                <TodoList search={searchValue} selected={selected} />
+                <Toaster
+                    position='top-right'
+                    toastOptions={{
+                        style: {
+                            fontSize: '1rem',
+                        },
+                    }}
+                />
             </div>
-            <Toaster
-                position='top-right'
-                toastOptions={{
-                    style: {
-                        fontSize: '1rem',
-                    },
-                }}
-            />
         </div>
     );
 };
