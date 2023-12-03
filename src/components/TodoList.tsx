@@ -39,7 +39,7 @@ const TodoList: FC<ITodoListProps> = ({ search, selected }) => {
 
     return (
         <div>
-            <ul className='flex flex-col max-w-[600px] pb-6 m-4box-border'>
+            <ul className='flex flex-col max-w-[600px] py-6 px-6 m-4box-border'>
                 {currentTableData.map((todo) => (
                     <TodoItem key={todo.id} title={todo.title} completed={todo.completed} id={todo.id} />
                 ))}

@@ -12,15 +12,15 @@ export interface ITodoItemProps {
 
 const TodoItem: FC<ITodoItemProps> = ({ id, title, completed }) => {
     const dispatch = useAppDispatch();
+    const inputRef: React.RefObject<HTMLInputElement> = useRef(null);
 
     const [isEditing, setIsEditing] = useState(false);
     const [newTitle, setNewTitle] = useState(title);
     const [isCompleted, setIsCompleted] = useState(completed);
 
-    const inputRef: React.RefObject<HTMLInputElement> = useRef(null);
-
     const handleClickCheckbox = () => {
-        setIsCompleted(!isCompleted);
+        setIsCompleted((prev) => !prev);
+
         dispatch(updateTodo({ todo: { id: id, title: title, completed: isCompleted } }));
     };
 
@@ -29,8 +29,8 @@ const TodoItem: FC<ITodoItemProps> = ({ id, title, completed }) => {
     };
 
     const handleSaveClick = () => {
-        if(title === newTitle) {
-            return toast.error('No changes made')
+        if (title === newTitle) {
+            return toast.error('No changes made');
         }
         dispatch(updateTodo({ todo: { id: id, title: newTitle } }));
         setIsEditing(false);
@@ -40,7 +40,6 @@ const TodoItem: FC<ITodoItemProps> = ({ id, title, completed }) => {
     const handleCancelClick = () => {
         setIsEditing(false);
         setNewTitle(title);
-        
     };
 
     const handleDeleteClick = () => {
@@ -55,7 +54,7 @@ const TodoItem: FC<ITodoItemProps> = ({ id, title, completed }) => {
     }, [isEditing]);
 
     return (
-        <li className='flex justify-between items-center w-full min-h-[44px] odd:border-b-[1px] even:border-b-[1px] last:border-b-0 px-3 py-2 text-slate-600 bg-white'>
+        <li className='flex justify-between items-center min-h-[44px] border-b-slate-300 odd:border-b-[1px] even:border-b-[1px] last:border-b-0 px-3 py-2 text-slate-600 bg-white'>
             <div className='flex items-center w-3/4'>
                 {isEditing ? (
                     <>
@@ -78,10 +77,10 @@ const TodoItem: FC<ITodoItemProps> = ({ id, title, completed }) => {
                         <input
                             type='checkbox'
                             checked={isCompleted}
-                            onChange={() => handleClickCheckbox()}
+                            onChange={handleClickCheckbox}
                             className='h-5 w-5 mr-4'
                         />
-                        <span className={`block w-full truncate ${isCompleted ? 'text-slate-400 line-through' : ''}`}>
+                        <span className={`block w-full ${isCompleted ? 'text-slate-400 line-through' : ''}`}>
                             {title}
                         </span>
                     </>

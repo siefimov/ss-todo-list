@@ -9,7 +9,7 @@ export const SelectButton: FC<ISelectButtonProps> = ({ value, onChange }) => (
     <select
         value={value}
         onChange={onChange}
-        className='border border-slate-300 p-2 rounded text-slate-500 outline-none focus:border focus:border-slate-400 focus:shadow-[inset_0_0_0_1px_rgb(59,113,202)] transition duration-200 ease-in-out'
+        className='border border-slate-300 h-[40px] px-2 rounded text-slate-500 outline-none focus:border focus:border-slate-400 focus:shadow-[inset_0_0_0_1px_rgb(59,113,202)] transition duration-200 ease-in-out'
     >
         <option value='all' className='appearance-none '>
             All
