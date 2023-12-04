@@ -3,7 +3,7 @@ import { useAppSelector } from '../store/hooks';
 
 import TodoItem from './TodoItem';
 
-import Pagination from './Pagination';
+import Pagination from './Pagination/Pagination';
 
 const PageSize = 10;
 
@@ -16,16 +16,16 @@ const TodoList: FC<ITodoListProps> = ({ search, selected }) => {
     const todos = useAppSelector((state) => state.todos.list);
 
     const searchedTodos = todos.filter((todo) => todo.title.includes(search));
-    
-    const selectedTodos = searchedTodos.filter(todo => {
-        if(selected === 'completed') {
+
+    const selectedTodos = searchedTodos.filter((todo) => {
+        if (selected === 'completed') {
             return todo.completed === true;
         } else if (selected === 'incomplete') {
             return todo.completed === false;
         } else {
-            return todo
+            return todo;
         }
-    })
+    });
 
     const [currentPage, setCurrentPage] = useState(1);
 

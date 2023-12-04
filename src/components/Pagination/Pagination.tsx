@@ -1,6 +1,6 @@
 import { FC } from 'react';
 import classnames from 'classnames';
-import { usePagination, DOTS, IUsePagintion } from '../hooks/pagination/usePagination';
+import { usePagination, DOTS, IUsePagintion } from './usePagination';
 import './pagination.scss';
 
 interface IPaginationComponent extends IUsePagintion {
