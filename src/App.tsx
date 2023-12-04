@@ -27,7 +27,7 @@ const App = () => {
 
     return (
         <div className='min-h-[100vh] w-[100vw] pt-8  flex flex-col items-center box-border bg-gray-50'>
-            <div className='flex flex-col border border-slate-400 rounded mx-5'>
+            <div className='flex flex-col border border-slate-400 rounded mx-5 sm:min-w-[600px]'>
                 <h1 className='p-6 text-4xl text-sky-800 font-bold bg-sky-100 rounded'>TODO List</h1>
 
                 <div className='pb-5 max-w-[600px] w-full rounded bg-white'>
