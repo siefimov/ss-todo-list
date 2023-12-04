@@ -1,30 +1,48 @@
-# React + TypeScript + Vite
+# Initial Setup 
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+## I. Without Docker
 
-Currently, two official plugins are available:
+Commands to perform the initial setup of the project.
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+### `npm install`
 
-## Expanding the ESLint configuration
+Installs project dependencies.
 
-If you are developing a production application, we recommend updating the configuration to enable type aware lint rules:
+## Available Scripts
 
-- Configure the top-level `parserOptions` property like this:
+In the project directory, you can run:
 
-```js
-export default {
-  // other rules...
-  parserOptions: {
-    ecmaVersion: 'latest',
-    sourceType: 'module',
-    project: ['./tsconfig.json', './tsconfig.node.json'],
-    tsconfigRootDir: __dirname,
-  },
-}
-```
+### `npm run dev`
 
-- Replace `plugin:@typescript-eslint/recommended` to `plugin:@typescript-eslint/recommended-type-checked` or `plugin:@typescript-eslint/strict-type-checked`
-- Optionally add `plugin:@typescript-eslint/stylistic-type-checked`
-- Install [eslint-plugin-react](https://github.com/jsx-eslint/eslint-plugin-react) and add `plugin:react/recommended` & `plugin:react/jsx-runtime` to the `extends` list
+Runs the app in the **development** mode.\
+Open [http://localhost:5173](http://localhost:5173) to view it in the browser.
+
+The page will reload if you make edits.\
+
+### `npm run build`
+
+Builds the app for production to the `build` folder.\
+It correctly bundles React in production mode and optimizes the build for the best performance.
+
+## II. With Docker
+
+### Build the Docker Container
+Run this command to build the image on your local machine and start the container. You only need to run this command the first time, and whenever you make changes to docker-compose.yml.\
+`docker-compose up --build --no-recreate -d`
+
+From the second time, you can use\
+`docker-compose up -d`
+
+### Build and start the Application
+Enter the container using the following command:
+`docker exec -it vite_docker sh`
+After you have entered the container and you need to run the commands to install the Node packages and start the app.
+`npm i && npm run dev`
+
+Open [http://localhost:5173](http://localhost:5173) to view it in the browser.
+
+
+
+
+
+
